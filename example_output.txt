@@ -1,0 +1,36 @@
+[Go to the source code for this file](https://github.com/ut-ras/Rasware2013/blob/doxygen-documentation/RASLib/inc/motor.h)
+
+### Includes
+
+* `#include "gpio.h"`
+
+### Functions
+* `tMotor *InitializeMotor(tPin a, tPin b, tBoolean brake, tBoolean invert);`
+* `void SetMotor(tMotor *mtr, float speed);`
+
+### Function Documentation
+
+***
+
+`tMotor *InitializeMotor(tPin a, tPin b, tBoolean brake, tBoolean invert);`
+
+Initializes a motor on a pair of pins
+
+**Parameters:**
+ * `a` Pin that should plug into the IN1 motor line
+ * `b` Pin that should plug into the IN2 motor line
+ * `brake` Flag to enable breaking when the motor is set to 0 speed
+ * `invert` Flag to switch the direction that the motor will turn
+
+**Returns:**
+ * Pointer to an initialized tMotor, can be used by the SetMotor function
+
+***
+
+`void SetMotor(tMotor *mtr, float speed);`
+
+Sets a motor speed
+
+**Parameters:**
+ * `mtr` Pointer to an initialized tMotor, returned by InitializeMotor
+ * `speed` Float on range [-1, 1] where -1 means maximum backward speed and 1 means maximum forward speed
