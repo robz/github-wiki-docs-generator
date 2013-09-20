@@ -50,7 +50,7 @@ tMotor *InitializeMotor(tPin a, tPin b, tBoolean brake, tBoolean invert);
  * @param mtr Pointer to an initialized tMotor, returned by InitializeMotor
  * @param speed Float on range [-1, 1] where -1 means maximum backward speed and 1 means maximum forward speed
  */
- void SetMotor(tMotor *mtr, float speed);
+void SetMotor(tMotor *mtr, float speed);
 
 
 #ifdef __cplusplus
