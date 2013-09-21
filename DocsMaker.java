@@ -137,7 +137,7 @@ public class DocsMaker {
                 
                 for (FunctionDescript d: fdescripts) {
                     fdstr += " * [`" + d.functDefinition + "`](" + wikiurl + "/" 
-                        + filename + "\n";
+                        + filename + ")\n";
                 }
 
                 fdstr += "\n### _Function Documention_\n\n";
