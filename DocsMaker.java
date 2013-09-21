@@ -4,6 +4,8 @@ import java.util.*;
 
 public class DocsMaker {
 
+    static String wikiurl = "https://github.com/ut-ras/Rasware2013/wiki/";
+
     public static ArrayList<String> readFileLines(String filename) throws FileNotFoundException {
         ArrayList<String> lines = new ArrayList<String>();
         Scanner sc = new Scanner(new File(filename));
@@ -134,7 +136,8 @@ public class DocsMaker {
                 fdstr += "### _Functions_\n\n";
                 
                 for (FunctionDescript d: fdescripts) {
-                    fdstr += " * `" + d.functDefinition + "`\n";
+                    fdstr += " * [`" + d.functDefinition + "`](" + wikiurl + "/" 
+                        + filename + "\n";
                 }
 
                 fdstr += "\n### _Function Documention_\n\n";
