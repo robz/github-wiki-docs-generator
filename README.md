@@ -4,6 +4,7 @@ github-wiki-docs-generator
 This creates formatted text from doxygen-like comments. It was intended to be used to generate documentation for Github wiki pages from C header (.h) files.
 
 How to use:
+
 1. Change the WIKI_URL and FOLDER_URL variables at the top of DocsMaker
 2. Compile DocsMaker.java
 3. Run `java DocsMaker [filename]+`
