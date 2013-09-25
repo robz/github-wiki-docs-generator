@@ -1,21 +1,44 @@
-import java.util.regex.Pattern;
+import java.util.regex.*;
 import java.io.*;
 import java.util.*;
 
 public class DocsMaker {
 
-    static String wikiurl = "https://github.com/ut-ras/Rasware2013/wiki/";
+    static String WIKI_URL = "https://github.com/ut-ras/Rasware2013/wiki",
+				  FOLDER_URL = "https://github.com/ut-ras/Rasware2013/tree/master/RASLib/inc",
+				  OUTPUT_FILE = "output.txt";
 
-    public static ArrayList<String> readFileLines(String filename) throws FileNotFoundException {
+    public static ArrayList<String> readFileLines(File file) throws FileNotFoundException {
         ArrayList<String> lines = new ArrayList<String>();
-        Scanner sc = new Scanner(new File(filename));
+        Scanner sc = new Scanner(file);
         while(sc.hasNext()) {
             lines.add(sc.nextLine());
         }
         sc.close();
         return lines;
     }
+	
+	public static String getGithubTagFromFunctionDefinition(String s) {
+		return s.trim()
+				.replaceAll("[^a-zA-Z0-9 ]", "")
+			    .replaceAll("\\s+", "-")
+				.toLowerCase();
+    }
+	
+	static Pattern functNamePattern = Pattern.compile("[a-zA-Z0-9]+\\(");
+	public static String getFunctName(String functDef) {
+		Matcher m = functNamePattern.matcher(functDef);
+		m.find();
+		String s = m.group();
+		return s.substring(0, s.length() - 1); // get rid of open parenthesis
+	}
 
+	public static void writeOutput(String filename, String s) throws IOException {
+		PrintWriter out = new PrintWriter(new FileWriter(filename), true);
+		out.write(s);
+		out.close();
+	}
+	
     static class FunctionDescript {
         private String functDescript, returnDescript;
         private ArrayList<Parameter> parameters;
@@ -61,7 +84,11 @@ public class DocsMaker {
         }
 
         public void setFunctDefinition(String line) {
-            functDefinition = line;
+            functDefinition = line.trim();
+			
+			if (functDefinition.charAt(functDefinition.length() - 1) == ',') {
+				functDefinition += " .....";
+			}
         }
 
         public String toString() {
@@ -103,9 +130,8 @@ public class DocsMaker {
         private ArrayList<FunctionDescript> fdescripts;
         private String filename, githubURL;
 
-        public FileDescript(String fn, String gh) {
+        public FileDescript(String fn) {
             this.filename = fn;
-            this.githubURL = gh;
             includes = new ArrayList<String>();
             fdescripts = new ArrayList<FunctionDescript>();
         }
@@ -120,7 +146,7 @@ public class DocsMaker {
 
         public String toString() {
             String fdstr = "[Go to the source code for " + filename + 
-                "](" + githubURL + "/" + filename + ")\n\n";
+                "](" + FOLDER_URL + "/" + filename + ")\n\n";
 
             if (includes.size() > 0) {
                 fdstr += "### _Includes_\n\n";
@@ -134,10 +160,11 @@ public class DocsMaker {
 
             if (fdescripts.size() > 0) {
                 fdstr += "### _Functions_\n\n";
-                
+                // https://github.com/ut-ras/Rasware2013/wiki/adc.h#tadc-initializeadctpin-pin
                 for (FunctionDescript d: fdescripts) {
-                    fdstr += " * [`" + d.functDefinition + "`](" + wikiurl + "/" 
-                        + filename + ")\n";
+                    fdstr += " * [`" + getFunctName(d.functDefinition) + "`](" + 
+						WIKI_URL + "/" + filename + "#"
+                        + getGithubTagFromFunctionDefinition(d.functDefinition) + ")\n";
                 }
 
                 fdstr += "\n### _Function Documention_\n\n";
@@ -158,66 +185,64 @@ public class DocsMaker {
                    notePattern = Pattern.compile(".*Note:.*"),
                    descriptEndPattern = Pattern.compile(" \\*/");
 
-    public void parseLines(ArrayList<String> lines) {
-        FunctionDescript curFunct = null;
+		public void parseLines(ArrayList<String> lines) {
+			FunctionDescript curFunct = null;
 
-        for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
-            // if the line matches a #include line, add it to the list of includes
-            if (includePattern.matcher(line).matches()) {
-                this.addInclude(line);
-            }
-            // else if the line matches "/**", create a new FunctionDoc object for it
-            else if (functPattern.matcher(line).matches()) {
-                curFunct = new FunctionDescript(lines.get(i + 1));
-            }
-            // else if we're currently building a FunctionDoc object, check for 
-            else if (curFunct != null) {
-                // @param
-                if (paramPattern.matcher(line).matches()) {
-                    curFunct.addParameter(line);
-                }
-                // @return
-                else if (returnPattern.matcher(line).matches()) {
-                    curFunct.setReturnDescript(line);
-                }
-                // Note:
-                else if (notePattern.matcher(line).matches()) {
-                    curFunct.addNote(line);
-                }
-                // End of description:
-                else if (descriptEndPattern.matcher(line).matches()) {
-                    curFunct.setFunctDefinition(lines.get(i + 1));
-                    this.addFunctDescript(curFunct);
-                }
-            }
-        }
-    }
-    }
-
-    public static String getGithubTag(String s) {
-        return s.replaceAll(
-                "[^a-zA-Z ]", "").replaceAll(
-                "\\s+", "-").toLowerCase();
+			for (int i = 0; i < lines.size(); i++) {
+				String line = lines.get(i);
+				// if the line matches a #include line, add it to the list of includes
+				if (includePattern.matcher(line).matches()) {
+					this.addInclude(line);
+				}
+				// else if the line matches "/**", create a new FunctionDoc object for it
+				else if (functPattern.matcher(line).matches()) {
+					curFunct = new FunctionDescript(lines.get(i + 1));
+				}
+				// else if we're currently building a FunctionDoc object, check for 
+				else if (curFunct != null) {
+					// @param
+					if (paramPattern.matcher(line).matches()) {
+						curFunct.addParameter(line);
+					}
+					// @return
+					else if (returnPattern.matcher(line).matches()) {
+						curFunct.setReturnDescript(line);
+					}
+					// Note:
+					else if (notePattern.matcher(line).matches()) {
+						curFunct.addNote(line);
+					}
+					// End of description:
+					else if (descriptEndPattern.matcher(line).matches()) {
+						curFunct.setFunctDefinition(lines.get(i + 1));
+						this.addFunctDescript(curFunct);
+					}
+				}
+			}
+		}
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        if (args.length == 0) {
+    public static void main(String[] args) throws IOException {
+		if (args.length == 0) {
             System.out.println("yo you didn't give us any files to read, dude.");
             return;
-        } else if (args.length == 1) {
-            System.out.println("yo the last argument should be a url of the folder where these files are gonna be on github");
-            return;
+        } 
+		
+		String s = "";
+		
+        for (int i = 0; i < args.length; i++) {
+			try {
+				File file = new File(args[i]);
+				ArrayList<String> lines = readFileLines(file);
+				FileDescript fd = new FileDescript(file.getName());
+				fd.parseLines(lines);
+				System.out.println(s);
+				s += fd.toString();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
         }
-
-        String url = args[args.length - 1];
-
-        for (int i = 0; i < args.length - 1; i++) {
-            String filename = args[i];
-            ArrayList<String> lines = readFileLines(filename);
-            FileDescript fd = new FileDescript(filename, url);
-            fd.parseLines(lines);
-            System.out.println(fd);
-        }
+            
+		writeOutput(OUTPUT_FILE, s);
     }
 }
