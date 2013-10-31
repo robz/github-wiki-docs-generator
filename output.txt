@@ -7,19 +7,21 @@
 
 ### _Functions_
 
- * [`InitializeADC`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#tadc-initializeadctpin-pin)
- * [`ADCRead`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#float-adcreadtadc-adc)
- * [`ADCBackgroundRead`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#void-adcbackgroundreadtadc-adc-tcallback-callback-void-data)
- * [`ADCReadContinuouslyUS`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#void-adcreadcontinuouslyustadc-adc-ttime-us)
- * [`ADCReadContinuously`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#void-adcreadcontinuouslytadc-adc-float-s)
+ * [`InitializeADC`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#initializeadc)
+ * [`ADCRead`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#adcread)
+ * [`ADCBackgroundRead`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#adcbackgroundread)
+ * [`ADCReadContinuouslyUS`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#adcreadcontinuouslyus)
+ * [`ADCReadContinuously`](https://github.com/ut-ras/Rasware2013/wiki/adc.h#adcreadcontinuously)
 
 ### _Function Documention_
 
 ***
 
-###`tADC *InitializeADC(tPin pin);`
+###`InitializeADC`
 
 Initializes an ADC on a pin
+
+`tADC *InitializeADC(tPin pin);`
 
 **Parameters:**
  * `pin` Pin plugged into a servo
@@ -32,9 +34,11 @@ Initializes an ADC on a pin
 
 ***
 
-###`float ADCRead(tADC *adc);`
+###`ADCRead`
 
 Returns value on a pin used with the tADC provided
+
+`float ADCRead(tADC *adc);`
 
 **Parameters:**
  * `adc` Pointer to an initialized tADC, returned by InitializeADC
@@ -47,9 +51,11 @@ Returns value on a pin used with the tADC provided
 
 ***
 
-###`void ADCBackgroundRead(tADC *adc, tCallback callback, void *data);`
+###`ADCBackgroundRead`
 
 Sets up an ADC to be run in the background
+
+`void ADCBackgroundRead(tADC *adc, tCallback callback, void *data);`
 
 **Parameters:**
  * `adc` Pointer to an initialized tADC, returned by InitializeADC
@@ -58,9 +64,11 @@ Sets up an ADC to be run in the background
 
 ***
 
-###`void ADCReadContinuouslyUS(tADC *adc, tTime us);`
+###`ADCReadContinuouslyUS`
 
 Sets up an ADC to read indefinitly
+
+`void ADCReadContinuouslyUS(tADC *adc, tTime us);`
 
 **Parameters:**
  * `adc` Pointer to an initialized tADC, returned by InitializeADC
@@ -72,9 +80,11 @@ Sets up an ADC to read indefinitly
 
 ***
 
-###`void ADCReadContinuously(tADC *adc, float s);`
+###`ADCReadContinuously`
 
 Sets up an ADC to read indefinitly
+
+`void ADCReadContinuously(tADC *adc, float s);`
 
 **Parameters:**
  * `adc` Pointer to an initialized tADC, returned by InitializeADC
@@ -95,22 +105,26 @@ Sets up an ADC to read indefinitly
 
 ### _Functions_
 
- * [`InitializeMCU`](https://github.com/ut-ras/Rasware2013/wiki/common.h#void-initializemcuvoid)
- * [`Dummy`](https://github.com/ut-ras/Rasware2013/wiki/common.h#void-dummyvoid)
+ * [`InitializeMCU`](https://github.com/ut-ras/Rasware2013/wiki/common.h#initializemcu)
+ * [`Dummy`](https://github.com/ut-ras/Rasware2013/wiki/common.h#dummy)
 
 ### _Function Documention_
 
 ***
 
-###`void InitializeMCU(void);`
+###`InitializeMCU`
 
 Sets up the LM4F to use RASLib
 
+`void InitializeMCU(void);`
+
 ***
 
-###`void Dummy(void);`
+###`Dummy`
 
 Function which does nothing
+
+`void Dummy(void);`
 
 ***
 
@@ -122,17 +136,19 @@ Function which does nothing
 
 ### _Functions_
 
- * [`InitializeEncoder`](https://github.com/ut-ras/Rasware2013/wiki/encoder.h#tencoder-initializeencodertpin-a-tpin-b-tboolean-invert)
- * [`GetEncoder`](https://github.com/ut-ras/Rasware2013/wiki/encoder.h#signed-long-getencodertencoder-enc)
- * [`ResetEncoder`](https://github.com/ut-ras/Rasware2013/wiki/encoder.h#void-resetencodertencoder-enc)
+ * [`InitializeEncoder`](https://github.com/ut-ras/Rasware2013/wiki/encoder.h#initializeencoder)
+ * [`GetEncoder`](https://github.com/ut-ras/Rasware2013/wiki/encoder.h#getencoder)
+ * [`ResetEncoder`](https://github.com/ut-ras/Rasware2013/wiki/encoder.h#resetencoder)
 
 ### _Function Documention_
 
 ***
 
-###`tEncoder *InitializeEncoder(tPin a, tPin b, tBoolean invert);`
+###`InitializeEncoder`
 
 Initializes an encoder on a pair of pins
+
+`tEncoder *InitializeEncoder(tPin a, tPin b, tBoolean invert);`
 
 **Parameters:**
  * `a` Pin that the encoder A line should be plugged into
@@ -144,9 +160,11 @@ Initializes an encoder on a pair of pins
 
 ***
 
-###`signed long GetEncoder(tEncoder *enc);`
+###`GetEncoder`
 
 Gets the accumulated value for an encoder
+
+`signed long GetEncoder(tEncoder *enc);`
 
 **Parameters:**
  * `enc` Pointer to a tEncoder that was returned by the InitializeEncoder function
@@ -156,9 +174,11 @@ Gets the accumulated value for an encoder
 
 ***
 
-###`void ResetEncoder(tEncoder *enc);`
+###`ResetEncoder`
 
 Clears any ticks that have been accumulated for an encoder
+
+`void ResetEncoder(tEncoder *enc);`
 
 **Parameters:**
  * `enc` Pointer to a tEncoder that was returned by the InitializeEncoder function
@@ -173,27 +193,31 @@ Clears any ticks that have been accumulated for an encoder
 
 ### _Functions_
 
- * [`InitializeGPIO`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#void-initializegpiovoid)
- * [`GetPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#tboolean-getpintpin-pin)
- * [`SetPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#void-setpintpin-pin-tboolean-val)
- * [`SetPinZ`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#void-setpinztpin-pin)
- * [`PullUpPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#void-pulluppintpin-pin)
- * [`PullDownPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#void-pulldownpintpin-pin)
- * [`CallOnPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#void-callonpintcallback-callback-void-data-tpin-pin)
+ * [`InitializeGPIO`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#initializegpio)
+ * [`GetPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#getpin)
+ * [`SetPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#setpin)
+ * [`SetPinZ`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#setpinz)
+ * [`PullUpPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#pulluppin)
+ * [`PullDownPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#pulldownpin)
+ * [`CallOnPin`](https://github.com/ut-ras/Rasware2013/wiki/gpio.h#callonpin)
 
 ### _Function Documention_
 
 ***
 
-###`void InitializeGPIO(void);`
+###`InitializeGPIO`
 
 Initializes GPIO
 
+`void InitializeGPIO(void);`
+
 ***
 
-###`tBoolean GetPin(tPin pin);`
+###`GetPin`
 
 Gets pin value as a boolean
+
+`tBoolean GetPin(tPin pin);`
 
 **Parameters:**
  * `pin` The pin being checked
@@ -203,9 +227,11 @@ Gets pin value as a boolean
 
 ***
 
-###`void SetPin(tPin pin, tBoolean val);`
+###`SetPin`
 
 Sets pin value as a boolean
+
+`void SetPin(tPin pin, tBoolean val);`
 
 **Parameters:**
  * `pin` The pin being set
@@ -213,36 +239,44 @@ Sets pin value as a boolean
 
 ***
 
-###`void SetPinZ(tPin pin);`
+###`SetPinZ`
 
 Sets a pin into high impedance mode
+
+`void SetPinZ(tPin pin);`
 
 **Parameters:**
  * `pin` The pin being set to high impedance mode
 
 ***
 
-###`void PullUpPin(tPin pin);`
+###`PullUpPin`
 
 Adds a weak pull up resistor to the pin
+
+`void PullUpPin(tPin pin);`
 
 **Parameters:**
  * `pin` The pin getting a weak pull up resistor 
 
 ***
 
-###`void PullDownPin(tPin pin);`
+###`PullDownPin`
 
 Adds a weak pull down resistor to the pin
+
+`void PullDownPin(tPin pin);`
 
 **Parameters:**
  * `pin` The pin getting a weak pull down resistor
 
 ***
 
-###`void CallOnPin(tCallback callback, void *data, tPin pin);`
+###`CallOnPin`
 
 Registers a callback to be called when the pin's value changes, the state of the
+
+`void CallOnPin(tCallback callback, void *data, tPin pin);`
 
 **Parameters:**
  * `callback` Pointer to a function that will be called whenever the pin changes
@@ -260,22 +294,24 @@ Registers a callback to be called when the pin's value changes, the state of the
 
 ### _Functions_
 
- * [`InitializeI2C`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#ti2c-initializei2ctpin-sda-tpin-scl)
- * [`I2CSuccess`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#tboolean-i2csuccessti2c-i2c)
- * [`I2CBackgroundSend`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#void-i2cbackgroundsendti2c-i2c-unsigned-char-addr-)
- * [`I2CSend`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#tboolean-i2csendti2c-i2c-unsigned-char-addr-)
- * [`I2CBackgroundReceive`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#void-i2cbackgroundreceiveti2c-i2c-unsigned-char-addr-)
- * [`I2CReceive`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#tboolean-i2creceiveti2c-i2c-unsigned-char-addr-)
- * [`I2CBackgroundRequest`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#void-i2cbackgroundrequestti2c-i2c-unsigned-char-addr-)
- * [`I2CRequest`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#tboolean-i2crequestti2c-i2c-unsigned-char-addr-)
+ * [`InitializeI2C`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#initializei2c)
+ * [`I2CSuccess`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2csuccess)
+ * [`I2CBackgroundSend`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2cbackgroundsend)
+ * [`I2CSend`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2csend)
+ * [`I2CBackgroundReceive`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2cbackgroundreceive)
+ * [`I2CReceive`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2creceive)
+ * [`I2CBackgroundRequest`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2cbackgroundrequest)
+ * [`I2CRequest`](https://github.com/ut-ras/Rasware2013/wiki/i2c.h#i2crequest)
 
 ### _Function Documention_
 
 ***
 
-###`tI2C *InitializeI2C(tPin sda, tPin scl);`
+###`InitializeI2C`
 
 Initializes an I2C module on a pair of pins
+
+`tI2C *InitializeI2C(tPin sda, tPin scl);`
 
 **Parameters:**
  * `sda` [TODO: describe sda]
@@ -286,9 +322,11 @@ Initializes an I2C module on a pair of pins
 
 ***
 
-###`tBoolean I2CSuccess(tI2C *i2c);`
+###`I2CSuccess`
 
 Checks if the previous i2c transaction was successful
+
+`tBoolean I2CSuccess(tI2C *i2c);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -298,9 +336,11 @@ Checks if the previous i2c transaction was successful
 
 ***
 
-###`void I2CBackgroundSend(tI2C *i2c, unsigned char addr, .....`
+###`I2CBackgroundSend`
 
 Sends data to an I2C address
+
+`void I2CBackgroundSend(tI2C *i2c, unsigned char addr, const unsigned char *data, unsigned int len, tCallback callback, void *cbdata);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -312,9 +352,11 @@ Sends data to an I2C address
 
 ***
 
-###`tBoolean I2CSend(tI2C *i2c, unsigned char addr, .....`
+###`I2CSend`
 
 Sends data to an I2C address
+
+`tBoolean I2CSend(tI2C *i2c, unsigned char addr, const unsigned char *data, unsigned int len);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -327,9 +369,11 @@ Sends data to an I2C address
 
 ***
 
-###`void I2CBackgroundReceive(tI2C *i2c, unsigned char addr, .....`
+###`I2CBackgroundReceive`
 
 Receives data from an I2C address
+
+`void I2CBackgroundReceive(tI2C *i2c, unsigned char addr, unsigned char *data, unsigned int len, tCallback callback, void *cbdata);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -341,9 +385,11 @@ Receives data from an I2C address
 
 ***
 
-###`tBoolean I2CReceive(tI2C *i2c, unsigned char addr, .....`
+###`I2CReceive`
 
 Receives data from an I2C address
+
+`tBoolean I2CReceive(tI2C *i2c, unsigned char addr, unsigned char* data, unsigned int len);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -356,9 +402,11 @@ Receives data from an I2C address
 
 ***
 
-###`void I2CBackgroundRequest(tI2C *i2c, unsigned char addr, .....`
+###`I2CBackgroundRequest`
 
 Requests data from an I2C address (nonblocking). This is the same as two sequential send and recieve calls but takes place in the internal state machine.
+
+`void I2CBackgroundRequest(tI2C *i2c, unsigned char addr, const unsigned char *sendData, unsigned int sendLen, unsigned char *recData, unsigned int recLen, tCallback callback, void *cbdata);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -372,9 +420,11 @@ Requests data from an I2C address (nonblocking). This is the same as two sequent
 
 ***
 
-###`tBoolean I2CRequest(tI2C *i2c, unsigned char addr, .....`
+###`I2CRequest`
 
 Requests data from an I2C address (blocking). This is the same as two sequential send and recieve calls but takes place in the internal state machine.
+
+`tBoolean I2CRequest(tI2C *i2c, unsigned char addr, const unsigned char *sendData, unsigned int sendLen, unsigned char *recData, unsigned int recLen);`
 
 **Parameters:**
  * `i2c` An initialized I2C module, which is returned by InitializeI2C
@@ -398,20 +448,23 @@ Requests data from an I2C address (blocking). This is the same as two sequential
 
 ### _Functions_
 
- * [`InitializeLineSensor`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#tlinesensor-initializelinesensorti2c-i2c-unsigned-int-address)
- * [`LineSensorRead`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#unsigned-char-linesensorreadtlinesensor-ls-float-threshold)
- * [`LineSensorReadArray`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#tboolean-linesensorreadarraytlinesensor-ls-float-array)
- * [`LineSensorBackgroundRead`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#void-linesensorbackgroundreadtlinesensor-ls-tcallback-callback-void-data)
- * [`LineSensorReadContinuouslyUS`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#void-linesensorreadcontinuouslyustlinesensor-ls-ttime-us)
- * [`LineSensorReadContinuously`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#void-linesensorreadcontinuouslytlinesensor-ls-float-s)
+ * [`InitializeI2CLineSensor`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#initializei2clinesensor)
+ * [`InitializeGPIOLineSensor`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#initializegpiolinesensor)
+ * [`LineSensorRead`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#linesensorread)
+ * [`LineSensorReadArray`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#linesensorreadarray)
+ * [`LineSensorBackgroundRead`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#linesensorbackgroundread)
+ * [`LineSensorReadContinuouslyUS`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#linesensorreadcontinuouslyus)
+ * [`LineSensorReadContinuously`](https://github.com/ut-ras/Rasware2013/wiki/linesensor.h#linesensorreadcontinuously)
 
 ### _Function Documention_
 
 ***
 
-###`tLineSensor *InitializeLineSensor(tI2C *i2c, unsigned int address);`
+###`InitializeI2CLineSensor`
 
 Initializes a line sensor with an address on an i2c bus
+
+`tLineSensor *InitializeI2CLineSensor(tI2C *i2c, unsigned int address);`
 
 **Parameters:**
  * `i2c` Pointer to an initialized tI2C, returned by InitializeI2C
@@ -422,9 +475,32 @@ Initializes a line sensor with an address on an i2c bus
 
 ***
 
-###`unsigned char LineSensorRead(tLineSensor *ls, float threshold);`
+###`InitializeGPIOLineSensor`
+
+Initializes a GPIO line sensor on the provided pins
+
+`tLineSensor *InitializeGPIOLineSensor(tPin p0, tPin p1, tPin p2, tPin p3, tPin p4, tPin p5, tPin p6, tPin p7);`
+
+**Parameters:**
+ * `p0` Pin plugged into sensor 0
+ * `p1` Pin plugged into sensor 1
+ * `p2` Pin plugged into sensor 2
+ * `p3` Pin plugged into sensor 3
+ * `p4` Pin plugged into sensor 4
+ * `p5` Pin plugged into sensor 5
+ * `p6` Pin plugged into sensor 6
+ * `p7` Pin plugged into sensor 7
+
+**Returns:**
+ * Pointer to an initialized tGPIOLineSensor, can be used by the GPIOLineSensorRead functions
+
+***
+
+###`LineSensorRead`
 
 Returns the line sensor value measured as a bit-packed byte
+
+`unsigned char LineSensorRead(tLineSensor *ls, float threshold);`
 
 **Parameters:**
  * `ls` Pointer to an initialized tLineSensor, returned by InitializeLineSensor
@@ -439,9 +515,11 @@ Returns the line sensor value measured as a bit-packed byte
 
 ***
 
-###`tBoolean LineSensorReadArray(tLineSensor *ls, float *array);`
+###`LineSensorReadArray`
 
 Puts the values read from the line sensor into an array of 8 floats
+
+`tBoolean LineSensorReadArray(tLineSensor *ls, float *array);`
 
 **Parameters:**
  * `ls` Pointer to an initialized tLineSensor, returned by InitializeLineSensor
@@ -455,9 +533,11 @@ Puts the values read from the line sensor into an array of 8 floats
 
 ***
 
-###`void LineSensorBackgroundRead(tLineSensor *ls, tCallback callback, void *data);`
+###`LineSensorBackgroundRead`
 
 Sets up a line sensor to be run in the background
+
+`void LineSensorBackgroundRead(tLineSensor *ls, tCallback callback, void *data);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tLineSensor, returned by InitializeLineSensor
@@ -466,9 +546,11 @@ Sets up a line sensor to be run in the background
 
 ***
 
-###`void LineSensorReadContinuouslyUS(tLineSensor *ls, tTime us);`
+###`LineSensorReadContinuouslyUS`
 
 Sets up an line sensor to be read indefinitly
+
+`void LineSensorReadContinuouslyUS(tLineSensor *ls, tTime us);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tLineSensor, returned by InitializeLineSensor
@@ -480,9 +562,11 @@ Sets up an line sensor to be read indefinitly
 
 ***
 
-###`void LineSensorReadContinuously(tLineSensor *ls, float s);`
+###`LineSensorReadContinuously`
 
 Sets up an line sensor to be read indefinitly
+
+`void LineSensorReadContinuously(tLineSensor *ls, float s);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tLineSensor, returned by InitializeLineSensor
@@ -502,16 +586,18 @@ Sets up an line sensor to be read indefinitly
 
 ### _Functions_
 
- * [`InitializeMotor`](https://github.com/ut-ras/Rasware2013/wiki/motor.h#tmotor-initializemotortpin-a-tpin-b-tboolean-brake-tboolean-invert)
- * [`SetMotor`](https://github.com/ut-ras/Rasware2013/wiki/motor.h#void-setmotortmotor-mtr-float-speed)
+ * [`InitializeMotor`](https://github.com/ut-ras/Rasware2013/wiki/motor.h#initializemotor)
+ * [`SetMotor`](https://github.com/ut-ras/Rasware2013/wiki/motor.h#setmotor)
 
 ### _Function Documention_
 
 ***
 
-###`tMotor *InitializeMotor(tPin a, tPin b, tBoolean brake, tBoolean invert);`
+###`InitializeMotor`
 
 Initializes a motor on a pair of pins
+
+`tMotor *InitializeMotor(tPin a, tPin b, tBoolean brake, tBoolean invert);`
 
 **Parameters:**
  * `a` Pin that should plug into the IN1 motor line
@@ -524,9 +610,11 @@ Initializes a motor on a pair of pins
 
 ***
 
-###`void SetMotor(tMotor *mtr, float speed);`
+###`SetMotor`
 
 Sets a motor speed
+
+`void SetMotor(tMotor *mtr, float speed);`
 
 **Parameters:**
  * `mtr` Pointer to an initialized tMotor, returned by InitializeMotor
@@ -542,16 +630,18 @@ Sets a motor speed
 
 ### _Functions_
 
- * [`InitializePWM`](https://github.com/ut-ras/Rasware2013/wiki/pwm.h#tpwm-initializepwmtpin-pin-float-freq)
- * [`SetPWM`](https://github.com/ut-ras/Rasware2013/wiki/pwm.h#void-setpwmtpwm-pwm-float-duty-float-phase)
+ * [`InitializePWM`](https://github.com/ut-ras/Rasware2013/wiki/pwm.h#initializepwm)
+ * [`SetPWM`](https://github.com/ut-ras/Rasware2013/wiki/pwm.h#setpwm)
 
 ### _Function Documention_
 
 ***
 
-###`tPWM *InitializePWM(tPin pin, float freq);`
+###`InitializePWM`
 
 Initializes a PWM signal for a pin
+
+`tPWM *InitializePWM(tPin pin, float freq);`
 
 **Parameters:**
  * `pin` Pin that will output a PWM signal
@@ -565,9 +655,11 @@ Initializes a PWM signal for a pin
 
 ***
 
-###`void SetPWM(tPWM *pwm, float duty, float phase);`
+###`SetPWM`
 
 Sets a PWM duty cycle and phase
+
+`void SetPWM(tPWM *pwm, float duty, float phase);`
 
 **Parameters:**
  * `pwm` Initialized tPWM, returned by InitializePWM
@@ -585,16 +677,18 @@ Sets a PWM duty cycle and phase
 
 ### _Functions_
 
- * [`InitializeServo`](https://github.com/ut-ras/Rasware2013/wiki/servo.h#tservo-initializeservotpin-pin)
- * [`SetServo`](https://github.com/ut-ras/Rasware2013/wiki/servo.h#void-setservotservo-servo-float-value)
+ * [`InitializeServo`](https://github.com/ut-ras/Rasware2013/wiki/servo.h#initializeservo)
+ * [`SetServo`](https://github.com/ut-ras/Rasware2013/wiki/servo.h#setservo)
 
 ### _Function Documention_
 
 ***
 
-###`tServo *InitializeServo(tPin pin);`
+###`InitializeServo`
 
 Initializes a servo on a pin
+
+`tServo *InitializeServo(tPin pin);`
 
 **Parameters:**
  * `pin` Pin plugged into a servo
@@ -604,9 +698,11 @@ Initializes a servo on a pin
 
 ***
 
-###`void SetServo(tServo *servo, float value);`
+###`SetServo`
 
 Sets a servo to a specified position
+
+`void SetServo(tServo *servo, float value);`
 
 **Parameters:**
  * `servo` Pointer to an initialized tServo, returned by InitializeServo
@@ -626,19 +722,21 @@ Sets a servo to a specified position
 
 ### _Functions_
 
- * [`InitializeSonar`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#tsonar-initializesonartpin-trigger-tpin-echo)
- * [`SonarRead`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#float-sonarreadtsonar-snr)
- * [`SonarBackgroundRead`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#void-sonarbackgroundreadtsonar-snr-tcallback-callback-void-data)
- * [`SonarReadContinuouslyUS`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#void-sonarreadcontinuouslyustsonar-snr-ttime-us)
- * [`SonarReadContinuously`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#void-sonarreadcontinuouslytsonar-snr-float-s)
+ * [`InitializeSonar`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#initializesonar)
+ * [`SonarRead`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#sonarread)
+ * [`SonarBackgroundRead`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#sonarbackgroundread)
+ * [`SonarReadContinuouslyUS`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#sonarreadcontinuouslyus)
+ * [`SonarReadContinuously`](https://github.com/ut-ras/Rasware2013/wiki/sonar.h#sonarreadcontinuously)
 
 ### _Function Documention_
 
 ***
 
-###`tSonar *InitializeSonar(tPin trigger, tPin echo);`
+###`InitializeSonar`
 
 Initializes a sonar on a pair of pin
+
+`tSonar *InitializeSonar(tPin trigger, tPin echo);`
 
 **Parameters:**
  * `trigger` Pin plugged into the sonar's tigger line
@@ -649,9 +747,11 @@ Initializes a sonar on a pair of pin
 
 ***
 
-###`float SonarRead(tSonar *snr);`
+###`SonarRead`
 
 Returns the distance measured from the sonar
+
+`float SonarRead(tSonar *snr);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tSonar, returned by InitializeSonar
@@ -664,9 +764,11 @@ Returns the distance measured from the sonar
 
 ***
 
-###`void SonarBackgroundRead(tSonar *snr, tCallback callback, void *data);`
+###`SonarBackgroundRead`
 
 Sets up an sonar to be run in the background
+
+`void SonarBackgroundRead(tSonar *snr, tCallback callback, void *data);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tSonar, returned by InitializeSonar
@@ -675,9 +777,11 @@ Sets up an sonar to be run in the background
 
 ***
 
-###`void SonarReadContinuouslyUS(tSonar *snr, tTime us);`
+###`SonarReadContinuouslyUS`
 
 Sets up an sonar to read indefinitly
+
+`void SonarReadContinuouslyUS(tSonar *snr, tTime us);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tSonar, returned by InitializeSonar
@@ -689,9 +793,11 @@ Sets up an sonar to read indefinitly
 
 ***
 
-###`void SonarReadContinuously(tSonar *snr, float s);`
+###`SonarReadContinuously`
 
 Sets up an sonar to read indefinitly
+
+`void SonarReadContinuously(tSonar *snr, float s);`
 
 **Parameters:**
  * `snr` Pointer to an initialized tSonar, returned by InitializeSonar
@@ -711,48 +817,56 @@ Sets up an sonar to read indefinitly
 
 ### _Functions_
 
- * [`InitializeSystemTime`](https://github.com/ut-ras/Rasware2013/wiki/time.h#void-initializesystemtimevoid)
- * [`GetTimeUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#ttime-gettimeusvoid)
- * [`GetTime`](https://github.com/ut-ras/Rasware2013/wiki/time.h#float-gettimevoid)
- * [`CallInUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#int-callinustcallback-callback-void-data-ttime-us)
- * [`CallIn`](https://github.com/ut-ras/Rasware2013/wiki/time.h#int-callintcallback-callback-void-data-float-s)
- * [`CallEveryUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#int-calleveryustcallback-callback-void-data-ttime-us)
- * [`CallEvery`](https://github.com/ut-ras/Rasware2013/wiki/time.h#int-calleverytcallback-callback-void-data-float-s)
- * [`CallStop`](https://github.com/ut-ras/Rasware2013/wiki/time.h#void-callstopint-id)
- * [`WaitUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#void-waitusttime-ms)
- * [`Wait`](https://github.com/ut-ras/Rasware2013/wiki/time.h#void-waitfloat-s)
+ * [`InitializeSystemTime`](https://github.com/ut-ras/Rasware2013/wiki/time.h#initializesystemtime)
+ * [`GetTimeUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#gettimeus)
+ * [`GetTime`](https://github.com/ut-ras/Rasware2013/wiki/time.h#gettime)
+ * [`CallInUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#callinus)
+ * [`CallIn`](https://github.com/ut-ras/Rasware2013/wiki/time.h#callin)
+ * [`CallEveryUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#calleveryus)
+ * [`CallEvery`](https://github.com/ut-ras/Rasware2013/wiki/time.h#callevery)
+ * [`CallStop`](https://github.com/ut-ras/Rasware2013/wiki/time.h#callstop)
+ * [`WaitUS`](https://github.com/ut-ras/Rasware2013/wiki/time.h#waitus)
+ * [`Wait`](https://github.com/ut-ras/Rasware2013/wiki/time.h#wait)
 
 ### _Function Documention_
 
 ***
 
-###`void InitializeSystemTime(void);`
+###`InitializeSystemTime`
 
 Initializes a system timer with microsecond resolution
 
+`void InitializeSystemTime(void);`
+
 ***
 
-###`tTime GetTimeUS(void);`
+###`GetTimeUS`
 
 Outputs system time
+
+`tTime GetTimeUS(void);`
 
 **Returns:**
  * System time in microseconds
 
 ***
 
-###`float GetTime(void);`
+###`GetTime`
 
 Outputs system time
+
+`float GetTime(void);`
 
 **Returns:**
  * System time in seconds
 
 ***
 
-###`int CallInUS(tCallback callback, void *data, tTime us);`
+###`CallInUS`
 
 Schedules a callback function to be called in given time
+
+`int CallInUS(tCallback callback, void *data, tTime us);`
 
 **Parameters:**
  * `callback` Function that will be called
@@ -764,9 +878,11 @@ Schedules a callback function to be called in given time
 
 ***
 
-###`int CallIn(tCallback callback, void *data, float s);`
+###`CallIn`
 
 Schedules a callback function to be called in given time
+
+`int CallIn(tCallback callback, void *data, float s);`
 
 **Parameters:**
  * `callback` Function that will be called
@@ -778,9 +894,11 @@ Schedules a callback function to be called in given time
 
 ***
 
-###`int CallEveryUS(tCallback callback, void *data, tTime us);`
+###`CallEveryUS`
 
 Schedules a callback function to be called repeatedly
+
+`int CallEveryUS(tCallback callback, void *data, tTime us);`
 
 **Parameters:**
  * `callback` Function that is called repeatedly
@@ -792,9 +910,11 @@ Schedules a callback function to be called repeatedly
 
 ***
 
-###`int CallEvery(tCallback callback, void *data, float s);`
+###`CallEvery`
 
 Schedules a callback function to be called repeatedly
+
+`int CallEvery(tCallback callback, void *data, float s);`
 
 **Parameters:**
  * `callback` Function that is called repeatedly
@@ -806,27 +926,33 @@ Schedules a callback function to be called repeatedly
 
 ***
 
-###`void CallStop(int id);`
+###`CallStop`
 
 Stops a pending call based on the passed identifier
+
+`void CallStop(int id);`
 
 **Parameters:**
  * `id` Value returned by CallEvery and CallIn functions
 
 ***
 
-###`void WaitUS(tTime ms);`
+###`WaitUS`
 
 Busy waits for given time
+
+`void WaitUS(tTime ms);`
 
 **Parameters:**
  * `ms` Amount of time to wait, specified in milliseconds
 
 ***
 
-###`void Wait(float s);`
+###`Wait`
 
 Busy waits for given time
+
+`void Wait(float s);`
 
 **Parameters:**
  * `s` Amount of time to wait, specified in seconds

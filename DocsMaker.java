@@ -86,9 +86,9 @@ public class DocsMaker {
         public void setFunctDefinition(String line) {
             functDefinition = line.trim();
 			
-			if (functDefinition.charAt(functDefinition.length() - 1) == ',') {
-				functDefinition += " .....";
-			}
+			//if (functDefinition.charAt(functDefinition.length() - 1) == ',') {
+			//	functDefinition += " .....";
+			//}
         }
 
         public String toString() {
@@ -120,7 +120,9 @@ public class DocsMaker {
                 noteStr += "\n";
             }
 
-            return "###`" + functDefinition + "`\n\n" + functDescript + "\n\n"
+            return "###`" + getFunctName(functDefinition) + "`\n\n"
+                   + functDescript + "\n\n"
+                   + "`" + functDefinition + "`\n\n"
                    + paramStr + retStr + noteStr;
         }
     }
@@ -160,11 +162,13 @@ public class DocsMaker {
 
             if (fdescripts.size() > 0) {
                 fdstr += "### _Functions_\n\n";
-                // https://github.com/ut-ras/Rasware2013/wiki/adc.h#tadc-initializeadctpin-pin
+                
                 for (FunctionDescript d: fdescripts) {
-                    fdstr += " * [`" + getFunctName(d.functDefinition) + "`](" + 
+                    String fname = getFunctName(d.functDefinition);
+                
+                    fdstr += " * [`" + fname + "`](" + 
 						WIKI_URL + "/" + filename + "#"
-                        + getGithubTagFromFunctionDefinition(d.functDefinition) + ")\n";
+                        + getGithubTagFromFunctionDefinition(fname) + ")\n";
                 }
 
                 fdstr += "\n### _Function Documention_\n\n";
@@ -214,7 +218,14 @@ public class DocsMaker {
 					}
 					// End of description:
 					else if (descriptEndPattern.matcher(line).matches()) {
-						curFunct.setFunctDefinition(lines.get(i + 1));
+                        String s = lines.get(i + 1).trim();
+                        
+                        while (s.charAt(s.length() - 1) == ',') {
+                            s += " " + lines.get(i + 1 + 1).trim();
+                            i += 1;
+                        }
+                    
+						curFunct.setFunctDefinition(s);
 						this.addFunctDescript(curFunct);
 					}
 				}
