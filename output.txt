@@ -492,7 +492,7 @@ Initializes a GPIO line sensor on the provided pins
  * `p7` Pin plugged into sensor 7
 
 **Returns:**
- * Pointer to an initialized tGPIOLineSensor, can be used by the GPIOLineSensorRead functions
+ * Pointer to an initialized tLineSensor, can be used by the LineSensorRead functions
 
 ***
 
